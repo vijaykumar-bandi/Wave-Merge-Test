@@ -1,7 +1,7 @@
 # Tasks: Wave Merge Test
 
-- [ ] 1. Project setup
-  - [ ] 1.1 Project setup
+- [x] 1. Project setup
+  - [x] 1.1 Project setup
     - Create the Node.js/Express skeleton: `package.json` with `express` as the only runtime dependency and `@playwright/test` as a dev dependency, the scripts `dev` (`node --watch src/server.js`) and `test` (`node --test`), `README.md` with the commands of the design's Build and run section, and a `.gitignore` that ignores `node_modules/` and `.env`.
     - Add `src/app.js` with `createApp()` serving `public/` as static files, `src/routes/health.js` mounted at `/api/health`, and the 404 and 500 plain text handlers; add `src/server.js` reading `process.env.PORT` (default 3000), binding `127.0.0.1`, and printing `Port <n> is already in use.` and exiting on `EADDRINUSE`.
     - Add `public/index.html` with the heading "Wave Merge Test" and a placeholder page, `e2e/.gitkeep`, and one passing test in `test/setup.test.js` that mounts `createApp()` and checks `/` answers 200.
