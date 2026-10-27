@@ -1,0 +1,63 @@
+# Tasks: Wave Merge Test
+
+- [ ] 1. Project setup
+  - [ ] 1.1 Project setup
+    - Create the Node.js/Express skeleton: `package.json` with `express` as the only runtime dependency and `@playwright/test` as a dev dependency, the scripts `dev` (`node --watch src/server.js`) and `test` (`node --test`), `README.md` with the commands of the design's Build and run section, and a `.gitignore` that ignores `node_modules/` and `.env`.
+    - Add `src/app.js` with `createApp()` serving `public/` as static files, `src/routes/health.js` mounted at `/api/health`, and the 404 and 500 plain text handlers; add `src/server.js` reading `process.env.PORT` (default 3000), binding `127.0.0.1`, and printing `Port <n> is already in use.` and exiting on `EADDRINUSE`.
+    - Add `public/index.html` with the heading "Wave Merge Test" and a placeholder page, `e2e/.gitkeep`, and one passing test in `test/setup.test.js` that mounts `createApp()` and checks `/` answers 200.
+    - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5_
+    - _Files: package.json, package-lock.json, README.md, .gitignore, src/app.js, src/server.js, src/routes/health.js, public/index.html, test/setup.test.js, e2e/.gitkeep_
+    - _Verify: npm install_
+    - _Verify: npm test_
+    - _Area: setup_
+
+- [ ] 2. Home page, counter and health endpoint
+  - [ ] 2.1 Home page with the counter
+    - Build the home page: the masthead wordmark, the `<h1>Wave Merge Test</h1>`, the counter element `#counter` with `role="status"` and `aria-live="polite"` starting at `0`, the `<button id="increment" type="button">Increment</button>`, the quiet Start over button, the health note and the "How to run" note.
+    - Add the page script: `let value = 0` in a closure, `+1` on the button's `click`, the new value written into `#counter`, a `+`/`=` key handler on the document, and no `fetch`, `XMLHttpRequest` or `localStorage` call.
+    - Style the page in its own stylesheet with the mock-up's font and colour tokens, linked from `index.html`.
+    - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8_
+    - _Depends: 1.1_
+    - _Files: public/index.html, public/styles.css_
+    - _Mockups: agent_generated/ui-preview/home.html_
+    - _Verify: npm test_
+    - _Area: ui_
+  - [ ] 2.2 Health endpoint
+    - Add the `GET /` handler on the health router that answers `200` with `res.json({ status: 'ok' })`, mounted at `/api/health` in `src/app.js`, so the body is exactly `{"status":"ok"}` with `Content-Type: application/json`.
+    - _Requirements: 2.1, 2.2, 2.3_
+    - _Depends: 1.1_
+    - _Files: src/routes/health.js, src/app.js_
+    - _Verify: npm test_
+    - _Area: api_
+
+- [ ] 3. Tests
+  - [ ] 3.1 Tests for the home page and the counter
+    - Add `test/home.test.js` checking `/` answers 200 with the heading "Wave Merge Test" and a counter at 0, and `test/counter.test.js` loading `public/index.html` into a small hand-written DOM stub and running the page script: one click gives 1, three clicks give 3, a fresh load gives 0, and the script holds no `fetch`, `XMLHttpRequest` or `localStorage` call.
+    - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 6.2, 6.3_
+    - _Depends: 2.1_
+    - _Files: test/home.test.js, test/counter.test.js_
+    - _Verify: npm test_
+    - _Area: api_
+  - [ ] 3.2 Tests for the health endpoint, errors and response time
+    - Add `test/health.test.js` checking status 200, `Content-Type: application/json` and the body exactly `{"status":"ok"}`; `test/errors.test.js` checking an unknown path gives 404 plain text and a thrown route gives 500 plain text; and `test/performance.test.js` checking `/` and `/api/health` each answer within 1000 ms.
+    - _Requirements: 2.1, 2.2, 2.3, 4.1, 4.2, 5.1, 5.2, 6.4_
+    - _Depends: 2.2_
+    - _Files: test/health.test.js, test/errors.test.js, test/performance.test.js_
+    - _Verify: npm test_
+    - _Area: api_
+  - [ ] 3.3 Tests for starting the app
+    - Add `test/server.test.js` starting the app on port `0` and checking the host is `127.0.0.1`, that `PORT` is honoured, that an unset `PORT` falls back to 3000, and that a taken port prints the error and exits with a non-zero code; each test closes its server afterwards so a running `npm run dev` never blocks the run.
+    - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 6.1, 6.5_
+    - _Depends: 1.1_
+    - _Files: test/server.test.js_
+    - _Verify: npm test_
+    - _Area: api_
+  - [ ]* 3.4 Property tests for P1–P5
+    - Add `test/properties.test.js` with generated inputs for the counter click sequences, the fresh-load reset, the health answer, the `PORT` value and unknown paths, one named test per property.
+    - _Properties: P1, P2, P3, P4, P5_
+    - _Requirements: 1.2, 1.3, 1.4, 1.5, 2.1, 2.2, 2.3, 3.2, 3.3, 5.1_
+    - _Depends: 2.1, 2.2_
+    - _Files: test/properties.test.js_
+    - _Verify: npm test_
+    - _Mode: testgen_
+    - _Area: api_
