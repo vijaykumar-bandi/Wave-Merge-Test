@@ -34,7 +34,7 @@
     - _Issue: #3_
 
 - [ ] 3. Tests
-  - [ ] 3.1 Tests for the home page and the counter
+  - [x] 3.1 Tests for the home page and the counter
     - Add `test/home.test.js` checking `/` answers 200 with the heading "Wave Merge Test" and a counter at 0, and `test/counter.test.js` loading `public/index.html` into a small hand-written DOM stub and running the page script: one click gives 1, three clicks give 3, a fresh load gives 0, and the script holds no `fetch`, `XMLHttpRequest` or `localStorage` call.
     - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 6.2, 6.3_
     - _Depends: 2.1_
