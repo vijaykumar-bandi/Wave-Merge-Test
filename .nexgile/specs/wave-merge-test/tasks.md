@@ -13,7 +13,7 @@
     - _Issue: #1_
 
 - [ ] 2. Home page, counter and health endpoint
-  - [ ] 2.1 Home page with the counter
+  - [x] 2.1 Home page with the counter
     - Build the home page: the masthead wordmark, the `<h1>Wave Merge Test</h1>`, the counter element `#counter` with `role="status"` and `aria-live="polite"` starting at `0`, the `<button id="increment" type="button">Increment</button>`, the quiet Start over button, the health note and the "How to run" note.
     - Add the page script: `let value = 0` in a closure, `+1` on the button's `click`, the new value written into `#counter`, a `+`/`=` key handler on the document, and no `fetch`, `XMLHttpRequest` or `localStorage` call.
     - Style the page in its own stylesheet with the mock-up's font and colour tokens, linked from `index.html`.
@@ -50,7 +50,7 @@
     - _Verify: npm test_
     - _Area: api_
     - _Issue: #6_
-  - [ ] 3.3 Tests for starting the app
+  - [x] 3.3 Tests for starting the app
     - Add `test/server.test.js` starting the app on port `0` and checking the host is `127.0.0.1`, that `PORT` is honoured, that an unset `PORT` falls back to 3000, and that a taken port prints the error and exits with a non-zero code; each test closes its server afterwards so a running `npm run dev` never blocks the run.
     - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 6.1, 6.5_
     - _Depends: 1.1_
