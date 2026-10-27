@@ -10,6 +10,7 @@
     - _Verify: npm install_
     - _Verify: npm test_
     - _Area: setup_
+    - _Issue: #1_
 
 - [ ] 2. Home page, counter and health endpoint
   - [ ] 2.1 Home page with the counter
@@ -22,6 +23,7 @@
     - _Mockups: agent_generated/ui-preview/home.html_
     - _Verify: npm test_
     - _Area: ui_
+    - _Issue: #2_
   - [ ] 2.2 Health endpoint
     - Add the `GET /` handler on the health router that answers `200` with `res.json({ status: 'ok' })`, mounted at `/api/health` in `src/app.js`, so the body is exactly `{"status":"ok"}` with `Content-Type: application/json`.
     - _Requirements: 2.1, 2.2, 2.3_
@@ -29,6 +31,7 @@
     - _Files: src/routes/health.js, src/app.js_
     - _Verify: npm test_
     - _Area: api_
+    - _Issue: #3_
 
 - [ ] 3. Tests
   - [ ] 3.1 Tests for the home page and the counter
@@ -38,6 +41,7 @@
     - _Files: test/home.test.js, test/counter.test.js_
     - _Verify: npm test_
     - _Area: api_
+    - _Issue: #5_
   - [ ] 3.2 Tests for the health endpoint, errors and response time
     - Add `test/health.test.js` checking status 200, `Content-Type: application/json` and the body exactly `{"status":"ok"}`; `test/errors.test.js` checking an unknown path gives 404 plain text and a thrown route gives 500 plain text; and `test/performance.test.js` checking `/` and `/api/health` each answer within 1000 ms.
     - _Requirements: 2.1, 2.2, 2.3, 4.1, 4.2, 5.1, 5.2, 6.4_
@@ -45,6 +49,7 @@
     - _Files: test/health.test.js, test/errors.test.js, test/performance.test.js_
     - _Verify: npm test_
     - _Area: api_
+    - _Issue: #6_
   - [ ] 3.3 Tests for starting the app
     - Add `test/server.test.js` starting the app on port `0` and checking the host is `127.0.0.1`, that `PORT` is honoured, that an unset `PORT` falls back to 3000, and that a taken port prints the error and exits with a non-zero code; each test closes its server afterwards so a running `npm run dev` never blocks the run.
     - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 6.1, 6.5_
@@ -52,6 +57,7 @@
     - _Files: test/server.test.js_
     - _Verify: npm test_
     - _Area: api_
+    - _Issue: #4_
   - [ ]* 3.4 Property tests for P1–P5
     - Add `test/properties.test.js` with generated inputs for the counter click sequences, the fresh-load reset, the health answer, the `PORT` value and unknown paths, one named test per property.
     - _Properties: P1, P2, P3, P4, P5_
@@ -61,3 +67,4 @@
     - _Verify: npm test_
     - _Mode: testgen_
     - _Area: api_
+    - _Issue: #7_
