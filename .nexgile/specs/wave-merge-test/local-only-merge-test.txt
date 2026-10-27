@@ -1,0 +1,1 @@
+Stage only that file, enter a commit message, and click Commit.
